@@ -8,6 +8,7 @@ var _take = require('lodash/take');
 
 exports.compareTwoStrings = compareTwoStrings;
 exports.findBestMatch = findBestMatch;
+exports.findSimilar = findSimilar;
 
 function compareTwoStrings(str1, str2) {
   var result = null;
@@ -122,6 +123,7 @@ function findBestMatch(mainString, targetStrings) {
 }
 
 function findSimilar(mainString, targetString, limit) {
+  if (!limit) { limit = 4 };
   var ratings = _map(targetStrings, function (targetString) {
     return {
       target: targetString,
