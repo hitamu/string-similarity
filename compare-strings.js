@@ -3,6 +3,8 @@ var _map = require('lodash/map');
 var _every = require('lodash/every');
 var _maxBy = require('lodash/maxBy');
 var _flattenDeep = require('lodash/flattenDeep');
+var _orderBy = require('lodash/orderBy');
+var _take = require('lodash/take');
 
 exports.compareTwoStrings = compareTwoStrings;
 exports.findBestMatch = findBestMatch;
@@ -117,4 +119,14 @@ function findBestMatch(mainString, targetStrings) {
 
     return mainStringIsAString && targetStringsIsAnArrayOfStrings;
   }
+}
+
+function findSimilar(mainString, targetString, limit) {
+  var ratings = _map(targetStrings, function (targetString) {
+    return {
+      target: targetString,
+      rating: compareTwoStrings(mainString, targetString)
+    };
+  });
+  return _take(_orderBy(ratings, 'rating', 'desc'), limit);
 }
