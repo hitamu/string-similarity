@@ -122,7 +122,7 @@ function findBestMatch(mainString, targetStrings) {
   }
 }
 
-function findSimilar(mainString, targetString, limit) {
+function findSimilar(mainString, targetStrings, limit) {
   if (!limit) { limit = 4 };
   var ratings = _map(targetStrings, function (targetString) {
     return {
